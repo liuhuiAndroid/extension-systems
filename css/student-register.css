@@ -1,8 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
 a{
     text-decoration: none;
 }
@@ -40,6 +35,7 @@ body{
     font-size: 32px;
     border:none;
     outline:medium;
+    border-bottom: 2px solid #ECEEED
 }
 
 .nav form>hr{

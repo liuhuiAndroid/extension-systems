@@ -1,22 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
-a{
-    text-decoration: none;
-}
-
-body{
-    text-align:center
-}
 
 .nav{
     width: 750px;
     height: 1334px;   
     margin: 0 auto;
     background-size: 100% 100%;
-
+    text-align:center
 }
 
 .nav div>div:first-child{
@@ -40,6 +28,7 @@ body{
     font-size: 32px;
     border:none;
     outline:medium;
+    border-bottom: 2px solid #ECEEED
 }
 
 .nav form>hr{
