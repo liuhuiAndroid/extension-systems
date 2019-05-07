@@ -7,6 +7,14 @@
         charset="utf-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/register-common.js"></script>
+    <!-- 城市选择器 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script>
 </head>
 
 <body>
@@ -17,10 +25,10 @@
             <label class="weui-label">手机号</label>
         </div>
         <div class="weui-cell__bd">
-            <input class="weui-input" type="tel" placeholder="请输入手机号" />
+            <input id="mobile" class="weui-input" type="tel" placeholder="请输入手机号" />
         </div>
         <div class="weui-cell__ft">
-            <button class="weui-vcode-btn">获取验证码</button>
+            <button id="generate_code" class="weui-vcode-btn">获取验证码</button>
         </div>
     </div>
     <div class="weui-cell">
@@ -41,8 +49,8 @@
         </div>
         <div class="weui-cell__bd">
             <select class="weui-select" name="select2">
-                <option value="1">男</option>
-                <option value="2">女</option>
+                <option value="1">男孩</option>
+                <option value="2">女孩</option>
             </select>
         </div>
     </div>
@@ -55,9 +63,9 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">所在城市</label></div>
         <div class="weui-cell__bd">
-            <input class="weui-input" type="tel" placeholder="请输入地址" />
+          <input class="weui-input" id="chooseCity" type="text" value="请选择地址">
         </div>
-    </div>
+      </div>
     <label for="weuiAgree" class="weui-agree">
         <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" />
         <span class="weui-agree__text">

@@ -10,7 +10,6 @@ window.onload = function () {
     });
 
     // 生成二维码
-    new QRCode(document.getElementById("qrcode"),
-        "http://www.iyueke.net");
+    new QRCode(document.getElementById("qrcode"),"http://www.iyueke.net");
 
 }
