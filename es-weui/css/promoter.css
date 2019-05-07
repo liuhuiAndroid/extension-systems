@@ -1,0 +1,17 @@
+.page__bd {
+    position: relative;
+}
+
+.weui_tab_bd_item {
+    display: none;
+    height: 100%;
+    overflow: auto;
+}
+
+.weui_tab_bd_item.weui_tab_bd_item_active {
+    display: block;
+}
+
+body{
+    height:100%
+}
