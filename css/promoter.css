@@ -1,0 +1,58 @@
+#content {
+  width: 100%;
+  bottom: 95px;
+  left: 0px;
+}
+
+.tabs nav {
+  position: absolute;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  overflow: hidden;
+  background-color: #C0DCC0;
+  /* 伸缩盒模型 */
+  display: flex;
+}
+
+nav a {
+  display: block;
+  width: 50%;
+  border-right: 1px solid #FFF;
+  color: #999999;
+  text-decoration: none;
+  font-size: 16px;
+  background: #fff;
+  border-top: 1px #F1F1F1 solid
+}
+
+nav a:last-child {
+  border-right: none;
+}
+
+nav a.active {
+  color: #010101;
+}
+
+nav div{
+  float:left;
+  width: 1px;
+  height: 100%; 
+  background: #F1F1F1;
+}
+
+.cont {
+  overflow: hidden;
+  display: none;
+}
+
+#qrcode{
+  margin-top: 50px;
+}
+
+#student-table{
+  margin:auto
+}

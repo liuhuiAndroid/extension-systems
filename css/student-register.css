@@ -1,17 +1,10 @@
-a{
-    text-decoration: none;
-}
-
-body{
-    text-align:center
-}
 
 .nav{
     width: 750px;
     height: 1334px;   
     margin: 0 auto;
     background-size: 100% 100%;
-
+    text-align:center
 }
 
 .nav div>div:first-child{
