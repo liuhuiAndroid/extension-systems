@@ -22,4 +22,9 @@ body{
 
 #student-table{
     table-layout: fixed;
+    text-align:center;
+}
+
+table tr {
+    height: 40px
 }
