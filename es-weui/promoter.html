@@ -16,25 +16,30 @@
 <body>
 
     <div class="page">
-        <div class="page__bd" style="height: 100%;">
+        <div class="page__bd">
             <div class="weui-tab">
+                <div class="weui-navbar">
+                    <div href="#tab1" class="weui-navbar__item weui-bar__item_on">
+                        二维码
+                    </div>
+                    <div href="#tab2" class="weui-navbar__item">
+                        推广学生列表
+                    </div>
+                </div>
+
                 <div class="weui-tab__panel">
-                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active">
+                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active" align="center">
                         <div id="qrcode"></div>
                     </div>
                     <div id="tab2" class="weui_tab_bd_item">
-                        内容二
+                        <table id="student-table" width="100%" cellspacing="0" cellpadding="2">
+                            <tr>
+                                <th>姓名</th>
+                                <th>手机</th>
+                                <th>时间</th>
+                            </tr>
+                        </table>
                     </div>
-                </div>
-                <div class="weui-tabbar">
-                    <a href="#tab1" class="weui-tabbar__item weui-bar__item_on">
-                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                        <p class="weui-tabbar__label">二维码</p>
-                    </a>
-                    <a href="#tab2" class="weui-tabbar__item">
-                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                        <p class="weui-tabbar__label">推广学生列表</p>
-                    </a>
                 </div>
             </div>
         </div>
