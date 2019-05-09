@@ -10,46 +10,67 @@
 	<link rel="stylesheet" href="./css/register-promoter.css">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="./js/register-common.js"></script>
+	<script src="./js/register-promoter.js"></script>
 </head>
 
 <body>
+	<form method="post" onsubmit="return checkForm()" action="api/register">
+		<div align="center">
+			<img id="image" src="./images/iyueke_icon.png" alt="">
+			<br />
+			<img id="image_font" src="./images/iyueke_font.png" alt="">
+		</div>
+		<div class="weui-cell weui-cell_vcode">
+			<div class="weui-cell__hd">
+				<label class="weui-label">手机号</label>
+			</div>
+			<div class="weui-cell__bd">
+				<input id="mobile" name="mobile" class="weui-input" type="tel" placeholder="请输入手机号" />
+			</div>
+			<div class="weui-cell__ft">
+				<button id="generate_code" class="weui-vcode-btn">获取验证码</button>
+			</div>
+		</div>
+		<div class="weui-cell">
+			<div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+			<div class="weui-cell__bd">
+				<input name="code" class="weui-input" type="text" placeholder="请输入验证码" />
+			</div>
+		</div>
+		<div class="weui-cell">
+			<div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+			<div class="weui-cell__bd">
+				<input name="name" class="weui-input" type="text" placeholder="请输入姓名" />
+			</div>
+		</div>
+		<label for="weuiAgree" class="weui-agree">
+			<input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" />
+			<span class="weui-agree__text">
+				阅读并同意<a href="https://api.iyueke.net/webpage/terms.html">《爱约课用户服务协议》</a>
+			</span>
+		</label>
 
-	<div align="center">
-		<img id="image" src="./images/iyueke_icon.png" alt=""><br />
-		<img id="image_font" src="./images/iyueke_font.png" alt="">
-	</div>
-	<div class="weui-cell weui-cell_vcode">
-		<div class="weui-cell__hd">
-			<label class="weui-label">手机号</label>
+		<div class="weui-btn-area">
+			<input type="submit" class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" value="注册" />
 		</div>
-		<div class="weui-cell__bd">
-			<input id="mobile" class="weui-input" type="tel" placeholder="请输入手机号" />
-		</div>
-		<div class="weui-cell__ft">
-			<button id="generate_code" class="weui-vcode-btn">获取验证码</button>
-		</div>
-	</div>
-	<div class="weui-cell">
-		<div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
-		<div class="weui-cell__bd">
-			<input class="weui-input" type="text" placeholder="请输入验证码" />
-		</div>
-	</div>
-	<div class="weui-cell">
-		<div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
-		<div class="weui-cell__bd">
-			<input class="weui-input" type="text" placeholder="请输入姓名" />
-		</div>
-	</div>
-	<label for="weuiAgree" class="weui-agree">
-		<input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" />
-		<span class="weui-agree__text">
-			阅读并同意<a href="https://api.iyueke.net/webpage/terms.html">《爱约课用户服务协议》</a>
-		</span>
-	</label>
 
-	<div class="weui-btn-area">
-		<a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">注册</a>
-	</div>
+		<!--BEGIN toast-->
+		<div id="toast" style="display: none;">
+			<div class="weui-mask_transparent"></div>
+			<div class="weui-toast">
+				<i class="weui-icon-success-no-circle weui-icon_toast"></i>
+				<p class="weui-toast__content">已完成</p>
+			</div>
+		</div>
+		<!--end toast-->
 
+		<!-- loading toast -->
+		<div id="loadingToast" style="display:none;">
+			<div class="weui-mask_transparent"></div>
+			<div class="weui-toast">
+				<i class="weui-loading weui-icon_toast"></i>
+				<p class="weui-toast__content">数据加载中</p>
+			</div>
+		</div>
+	</form>
 </body>
