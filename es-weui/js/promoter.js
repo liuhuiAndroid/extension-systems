@@ -12,4 +12,19 @@ window.onload = function () {
     // 生成二维码
     new QRCode(document.getElementById("qrcode"), "http://www.iyueke.net");
 
+    $.ajax({
+        url: 'data.json',
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            //方法中传入的参数data为后台获取的数据
+            for (i in data.data) //data.data指的是数组，数组里是8个对象，i为数组的索引
+            {
+                var tr;
+                tr = '<td>' + data.data[i].name + '</td><td>' + data.data[i].phone + '</td><td>' + data.data[i].time + '</td>'
+                $("#student-table").append('<tr>' + tr + '</tr>')
+            }
+        }
+    })
+
 }

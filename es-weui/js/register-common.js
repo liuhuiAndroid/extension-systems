@@ -13,7 +13,7 @@ window.onload = function () {
         function settime() {
             if (countdown == 0) {
                 console.log('true');
-                
+
                 _generate_code.attr("disabled", false);
                 _generate_code.text("获取验证码");
                 countdown = 60;
