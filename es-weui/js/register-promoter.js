@@ -1,4 +1,8 @@
 function initView() {
+    var token = sessionStorage.getItem("token")
+    console.log("token = " +token)
+    alert("token = " +token)
+
     $('#generate_code').on('click', function () {
         if (isEmpty($("#mobile").val())) {
             alert("请输入手机号");

@@ -12,26 +12,41 @@
     <script src="./js/LAB.min.js"></script>
     <script>
         window.onload = function () {
+
+            (function ($) {
+                $.getUrlParam = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+            })(jQuery);
+
             // 获取参数
             var openid = $.getUrlParam('o');
             var unionid = $.getUrlParam('u');
             var orgid = $.getUrlParam('orgid');
+            console.log("openid = " + openid)
+            console.log("unionid = " + unionid)
+            console.log("orgid = " + orgid)
 
-            $(function () {
-                $.ajax({
-                    url: "register-promoter-success.json",
-                    type: "get",
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.status == 0) {
-                            alert("success.")
-                            document.cookie = '111111111112'
-                            window.location.href = 'register-promoter.html';
-                        }
-                    }
-                });
-            });
+            sessionStorage.setItem("token","111111111112");    
+            window.location.href = 'register-promoter.html';
+
+            // $(function () {
+            //     $.ajax({
+            //         url: "register-promoter-success.json",
+            //         type: "get",
+            //         dataType: "json",
+            //         success: function (data) {
+            //             if (data.status == 0) {
+            //                 alert("success.")
+
+            //             }
+            //         }
+            //     });
+            // });
         }
+
     </script>
 </head>
 
