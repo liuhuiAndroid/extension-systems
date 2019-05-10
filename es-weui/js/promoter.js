@@ -32,4 +32,6 @@ window.onload = function () {
         }
     })
 
+    var currentCookie = document.cookie.split(";")[0];
+    alert("currentCookie:" + currentCookie)
 }

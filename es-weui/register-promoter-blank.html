@@ -12,6 +12,11 @@
     <script src="./js/LAB.min.js"></script>
     <script>
         window.onload = function () {
+            // 获取参数
+            var openid = $.getUrlParam('o');
+            var unionid = $.getUrlParam('u');
+            var orgid = $.getUrlParam('orgid');
+
             $(function () {
                 $.ajax({
                     url: "register-promoter-success.json",
@@ -20,7 +25,8 @@
                     success: function (data) {
                         if (data.status == 0) {
                             alert("success.")
-                            window.location.href='register-promoter.html';
+                            document.cookie = '111111111112'
+                            window.location.href = 'register-promoter.html';
                         }
                     }
                 });
