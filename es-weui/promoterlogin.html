@@ -7,9 +7,7 @@
         charset="utf-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
-    <link rel="stylesheet" href="./css/register-promoter.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="./js/LAB.min.js"></script>
     <script>
         window.onload = function () {
 
@@ -29,7 +27,11 @@
             console.log("unionid = " + unionid)
             console.log("orgid = " + orgid)
 
+            // 已经注册
             sessionStorage.setItem("token","111111111112");    
+            window.location.href = 'promoter.html';
+            
+            // 未注册
             window.location.href = 'register-promoter.html';
 
             // $(function () {
@@ -40,7 +42,6 @@
             //         success: function (data) {
             //             if (data.status == 0) {
             //                 alert("success.")
-
             //             }
             //         }
             //     });

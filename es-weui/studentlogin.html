@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        window.onload = function () {
+
+            (function ($) {
+                $.getUrlParam = function (name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) return unescape(r[2]); return null;
+                }
+            })(jQuery);
+
+            // 获取参数
+            var openid = $.getUrlParam('o');
+            var unionid = $.getUrlParam('u');
+            var saleid = $.getUrlParam('saleid');
+            console.log("openid = " + openid)
+            console.log("unionid = " + unionid)
+            console.log("saleid = " + saleid)
+
+            // 已经注册
+            // 提示：您已是爱约课会员
+            sessionStorage.setItem("token","111111111112");    
+            window.location.href = 'student.html';
+            
+            // 未注册
+            window.location.href = 'register-student.html';
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
