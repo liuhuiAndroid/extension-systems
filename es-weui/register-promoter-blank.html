@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
+    <link rel="stylesheet" href="./css/register-promoter.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/LAB.min.js"></script>
+    <script>
+        window.onload = function () {
+            $(function () {
+                $.ajax({
+                    url: "register-promoter-success.json",
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == 0) {
+                            alert("success.")
+                            window.location.href='register-promoter.html';
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
