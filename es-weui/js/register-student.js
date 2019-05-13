@@ -78,6 +78,7 @@ function initView() {
     }
 
     // 省市区三级联动
+    console.log('bind province')
     BindProvince()
 }
 
@@ -99,14 +100,18 @@ function checkAndCommit() {
     var enname = $("#enname").val();
     var sex = $("#sex").val();
     var birthday = $("#birthday").val();
-    var address = $("#address").val();
+    var province = $("#province").find("option:selected").text();
+    var city = $("#city").find("option:selected").text();
+    var district = $("#district").find("option:selected").text();
     console.log("mobile = " + tel)
     console.log("code = " + code)
     console.log("cnname = " + cnname)
     console.log("enname = " + enname)
     console.log("sex = " + sex)
     console.log("birthday = " + birthday)
-    console.log("address = " + address)
+    console.log("province = " + province)
+    console.log("city = " + city)
+    console.log("district = " + district)
     console.log("===---------------===")
     if (isEmpty(tel)) {
         alert("请输入手机号");
@@ -132,10 +137,6 @@ function checkAndCommit() {
         alert("请选择宝贝生日");
         return false;
     }
-    if (isEmpty(address)) {
-        alert("请选择地址");
-        return false;
-    }
     if (!$("#weuiAgree").is(":checked")) {
         alert("请阅读并同意《爱约课用户服务协议》");
         return false;
@@ -153,9 +154,9 @@ function checkAndCommit() {
         Gender: sex,
         Birthday: birthday,
         address: address,
-        Province: "省",
-        City: "市",
-        Area: "区",
+        Province: province,
+        City: city,
+        Area: district,
         HeadImg: headImg
     };
     var objJson = JSON.stringify(obj);
@@ -179,15 +180,15 @@ function checkAndCommit() {
 
 function BindProvince() {
     $.ajax({
-        url: "https://iyueke.net/wechatapi/Home/GetProvince",
-        type: "GET",
-        dataType: "Json",
+        url: "https://iyueke.net/wechatapi/ActionApi/Home/GetProvince",
+        type: "POST",
+        contentType: "application/json",
         async: false,
         success: function (data) {
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 0; i < data.data.length; i++) {
                 $("#city").attr("readonly", true);
                 $("#district").attr("readonly", true);
-                $("#province").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                $("#province").append("<option value='" + data.data[i].id + "'>" + data.data[i].name + "</option>");
             }
         }
     });
@@ -206,16 +207,24 @@ function BindProvince() {
 }
 
 function BindCityDistrict(province_id) {
+    var obj = {
+        province_id: province_id
+    };
+    var objJson = JSON.stringify(obj);
+    console.log('GetCity objJson:' + objJson)
+
     //绑定地级市
     $.ajax({
-        url: "https://iyueke.net/wechatapi/Home/GetCity?province_id=" + province_id,
-        type: "GET",
-        dataType: "Json",
+        url: "https://iyueke.net/wechatapi/ActionApi/Home/GetCity",
+        type: "POST",
+        data: objJson,
+        contentType: "application/json",
         async: false,
         success: function (data) {
             $("#city").empty();
-            for (var i = 0; i < data.length; i++) {
-                $("#city").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+            console.log('GetCity data:' + JSON.stringify(data.data))
+            for (var i = 0; i < data.data.length; i++) {
+                $("#city").append("<option value='" + data.data[i].id + "'>" + data.data[i].name + "</option>");
             }
         }
     });
@@ -230,15 +239,21 @@ function BindCityDistrict(province_id) {
 }
 
 function BindDistrict(city_id) {
+    var obj = {
+        city_id: city_id
+    };
+    var objJson = JSON.stringify(obj);
+
     $.ajax({
-        url: "https://iyueke.net/wechatapi/Home/GetDistrict?city_id=" + city_id,
-        type: "GET",
-        dataType: "Json",
+        url: "https://iyueke.net/wechatapi/ActionApi/Home/GetDistrict",
+        type: "POST",
+        data: objJson,
+        contentType: "application/json",
         async: false,
         success: function (data) {
             $("#district").empty();
-            for (var i = 0; i < data.length; i++) {
-                $("#district").append("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+            for (var i = 0; i < data.data.length; i++) {
+                $("#district").append("<option value='" + data.data[i].id + "'>" + data.data[i].name + "</option>");
             }
         }
     });
