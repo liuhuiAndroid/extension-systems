@@ -5,6 +5,7 @@ function initView() {
     console.log("code = " + code)
 
     $('#head_img').attr("src", headimg);
+    $('#sex').attr("src", "./images/iyueke_man.png");
 
     new QRCode(document.getElementById("qrcode"), "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf5ca721e672cc146&redirect_uri=https%3a%2f%2fiyueke.net%2fwechat%2fWeixin%2fGetOAuth");
 
@@ -27,7 +28,9 @@ function initView() {
 }
 
 function initWeChat() {
+    console.log('initWeChat')
     wx.ready(function () {
+        console.log('before wx.ready')
         wx.onMenuShareAppMessage({
             title: '叮咚叮咚~暖心小心思从天而降', // 分享标题
             desc: '高冷No Way! Kugel完全送礼手册，拿走不谢。', // 分享描述 
@@ -41,7 +44,6 @@ function initWeChat() {
                     $.post('http://alfi.51i.cc/Luckdraw/LuckdrawXmas/WxShare?openid=' + localStorage.getItem('crs_openid') + '&channel=' + localStorage.getItem('source'), function (data) {
                         alert('分享成功,赠送您一次抽奖机会~')
                         self.location = 'index.html'
-
                     })
                 } else {
                     //alert('您已中奖或今天已分享过啦~')
@@ -69,6 +71,7 @@ function initWeChat() {
             cancel: function () {
             }
         });
+        console.log('end wx.ready')
     });
 }
 

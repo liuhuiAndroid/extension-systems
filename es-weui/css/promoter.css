@@ -42,19 +42,25 @@ table tr {
     background: #F0FFFA;
 }
 
-#qrcode_hint{
+#qrcode_hint {
     color: #666666;
     margin-top: 15px;
-    float: left;
+    /* float: left; */
 }
 
-#head_img{
+#head_img {
     width: 92px;
     height: 92px;
     float: left;
 }
 
-#sex{
+#sex {
     width: 20px;
     height: 33px;
+}
+
+.div_center {
+    width: 260px;
+    text-align: center;
+    margin: auto;
 }

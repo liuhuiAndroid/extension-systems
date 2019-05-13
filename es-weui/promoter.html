@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/promoter.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./js/LAB.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="https://iyueke.net/wechat/WeiXinBase.aspx"></script>
     <script>
         $LAB.script("./js/crypto-js.js")
             .script("./js/aes.js")
@@ -37,19 +39,23 @@
                 </div>
 
                 <div class="weui-tab__panel">
-                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active">
-                        <div>
-                            <img id="head_img" src="./images/iyueke_icon.png">
-                            <p id="name">开心一号</p>
-                            <img id="sex" src="./images/iyueke_man.png">
-                            <p id="org_name">智滕教育</p>
-
-                        </div>
-                        <div align="center">
-                            <div id="qrcode"></div>
+                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active" style="margin-top:10%">
+                        <div class="div_center">
+                            <div style="margin-bottom:20px;height:100px;">
+                                <img id="head_img">
+                                <div>
+                                    <p id="name" style="text-align:left;margin-left:105px;">
+                                        开心一号
+                                        <img id="sex" style="width:21px;height:35px">
+                                    </p>
+                                </div>
+                                <div>
+                                    <p id="org_name" style="text-align:left;margin-left:105px;">智滕教育</p>
+                                </div>
+                            </div>
+                            <div id="qrcode" style="text-align:center;margin:auto"></div>
                             <div id="qrcode_hint">快来扫一扫加入我们吧！</div>
                         </div>
-
                     </div>
                     <div id="tab2" class="weui_tab_bd_item">
                         <table id="student-table" width="100%" cellspacing="0" cellpadding="2">
