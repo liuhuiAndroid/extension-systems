@@ -16,7 +16,7 @@ function initView() {
             start: 1990,
             end: new Date().getFullYear(),
             onConfirm: function (result) {
-                $('#birthday').val(result[0] + "-" + result[1] + "-" + result[2])
+                $('#birthday').html(result[0] + "-" + result[1] + "-" + result[2])
             }
         });
     });
@@ -99,7 +99,7 @@ function checkAndCommit() {
     var cnname = $("#cnname").val();
     var enname = $("#enname").val();
     var sex = $("#sex").val();
-    var birthday = $("#birthday").val();
+    var birthday = $("#birthday").text();
     var province = $("#province").find("option:selected").text();
     var city = $("#city").find("option:selected").text();
     var district = $("#district").find("option:selected").text();
