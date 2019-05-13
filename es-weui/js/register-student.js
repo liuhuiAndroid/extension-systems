@@ -6,9 +6,11 @@ function initView() {
     var openid = $.getUrlParam('openid');
     var unionid = $.getUrlParam('unionid');
     var saleid = $.getUrlParam('saleid');
+    var orgid = $.getUrlParam('orgid');
     console.log("openid = " + openid)
     console.log("unionid = " + unionid)
     console.log("saleid = " + saleid)
+    console.log("orgid = " + orgid)
 
     // 生日选择器
     $('#birthday').on('click', function () {
@@ -88,11 +90,13 @@ function checkAndCommit() {
     var unionid = $.getUrlParam('unionid');
     var saleid = $.getUrlParam('saleid');
     var headImg = $.getUrlParam('headimg');
+    var orgid = $.getUrlParam('orgid');
     console.log("===---------------===")
     console.log("openid = " + openid)
     console.log("unionid = " + unionid)
     console.log("saleid = " + saleid)
     console.log("headImg = " + headImg)
+    console.log("orgid = " + orgid)
 
     var tel = $("#mobile").val();
     var code = $("#code").val();
@@ -157,7 +161,8 @@ function checkAndCommit() {
         Province: province,
         City: city,
         Area: district,
-        HeadImg: headImg
+        HeadImg: headImg,
+        orgid:orgid
     };
     var objJson = JSON.stringify(obj);
     var objJsonEn = aesEncrypt(objJson, aesKey, iv);

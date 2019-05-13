@@ -1,11 +1,22 @@
 function initView() {
     var headimg = $.getUrlParam('headimg');
     var code = $.getUrlParam('code');
+    var orgname = $.getUrlParam('orgname');
+    var salesmanname = $.getUrlParam('salesmanname');
+    var gender = $.getUrlParam('gender');
     console.log("headimg = " + headimg)
     console.log("code = " + code)
+    console.log("salesmanname = " + salesmanname)
 
     $('#head_img').attr("src", headimg);
-    $('#sex').attr("src", "./images/iyueke_man.png");
+    if(1 == gender){
+        $('#sex').attr("src", "./images/iyueke_man.png");
+    }else{
+        $('#sex').attr("src", "./images/iyueke_woman.png");
+    }
+    
+    $("#name").html(salesmanname)
+    $("#org_name").html(orgname)
 
     new QRCode(document.getElementById("qrcode"), "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf5ca721e672cc146&redirect_uri=https%3a%2f%2fiyueke.net%2fwechat%2fWeixin%2fGetOAuth");
 

@@ -45,8 +45,10 @@
                     } else if (data.code == 4) {
                         // 已经注册
                         // sessionStorage.setItem("token", "111111111112");
-                        window.location.href = 'promoter.html?u=' + unionid + "&code=" + data.data.ID
-                            + "&headimg=" + data.data.HeadImg;
+                        var value = 'promoter.html?u=' + unionid + "&code=" + data.data.ID
+                            + "&headimg=" + data.data.HeadImg + "&orgname=" + data.data.OrgName 
+                            + "&salesmanname=" + data.data.salesmanName + "&gender=" + data.data.Gender;
+                        window.location.href = value;
                     } else {
                         alert(data.msg);
                     }

@@ -16,7 +16,6 @@
             .wait(function () { initView(); });
 
         function initView() {
-
             // 获取参数
             var openid = $.getUrlParam('o');
             var unionid = $.getUrlParam('u');
@@ -45,7 +44,8 @@
                     if (data.code == 0) {
                         // 需要注册
                         window.location.href = 'register-student.html?openid=' + data.data.openid
-                            + "&unionid=" + data.data.unionid + "&saleid=" + saleid + "&headimg=" + data.data.headimgurl;
+                            + "&unionid=" + data.data.unionid + "&saleid=" + saleid 
+                            + "&headimg=" + data.data.headimgurl + "&orgid=" + orgid;
                     } else if (data.code == 4) {
                         // 已经注册
                         // 提示：您已是爱约课会员

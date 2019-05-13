@@ -130,7 +130,8 @@ function checkAndCommit() {
                 //     $toast.fadeOut(100);
                 // }, 2000);
                 window.location.href = 'promoter.html?u=' + unionid + "&code=" + data.data.ID
-                    + "&headimg=" + data.data.HeadImg;
+                    + "&headimg=" + data.data.HeadImg + "&orgname=" + data.data.OrgName
+                    + "&salesmanname=" + data.data.salesmanName + "&gender=" + data.data.Gender;
             } else {
                 alert(data.msg);
             }
