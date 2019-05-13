@@ -9,8 +9,17 @@
     <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
     <link rel="stylesheet" href="css/promoter.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="./js/promoter.js"></script>
-    <script src="./js/qrcode.min.js"></script>
+    <script src="./js/LAB.min.js"></script>
+    <script>
+        $LAB.script("./js/crypto-js.js")
+            .script("./js/aes.js")
+            .script("./js/qrcode.min.js")
+            .script("./js/promoter.js")
+            .script("./js/common.js")
+            .script("https://res.wx.qq.com/open/js/jweixin-1.0.0.js")
+            .script("https://iyueke.net/wechat/WeiXinBase.aspx")
+            .wait(function () { initView(); });
+    </script>
 </head>
 
 <body>
@@ -28,16 +37,32 @@
                 </div>
 
                 <div class="weui-tab__panel">
-                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active" align="center">
-                        <div id="qrcode"></div>
+                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active">
+                        <div>
+                            <img id="head_img" src="./images/iyueke_icon.png">
+                            <p id="name">开心一号</p>
+                            <img id="sex" src="./images/iyueke_man.png">
+                            <p id="org_name">智滕教育</p>
+
+                        </div>
+                        <div align="center">
+                            <div id="qrcode"></div>
+                            <div id="qrcode_hint">快来扫一扫加入我们吧！</div>
+                        </div>
+
                     </div>
                     <div id="tab2" class="weui_tab_bd_item">
                         <table id="student-table" width="100%" cellspacing="0" cellpadding="2">
-                            <tr>
-                                <th>姓名</th>
-                                <th>手机</th>
-                                <th>时间</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th class="table_head">姓名</th>
+                                    <th class="table_head">手机</th>
+                                    <th class="table_head">时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
                         </table>
                     </div>
                 </div>

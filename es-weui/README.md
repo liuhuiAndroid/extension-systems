@@ -2,14 +2,16 @@
 o: openid u: unionid orgid:机构id
 
 推广人二维码：https://iyueke.net/wechatpage/studentlogin.html?o=o0yxh1ejDlUALwwx2itAQ6CIINOM&u=oVC3M5kQBkCH6ECjicxnRd4n344Y&saleid=1
-o: openid u: unionid saleid:推广人id
+o: openid u: unionid saleid:推广人id orgid:机构id
 
+git私服地址
+https://dev.azure.com/kuaiye/iyuekeWechat
+token：zyfcgv3gdna5vi7ut446hvpealwlqmyucra6ltn46nqrxqybnb4q
 
+1. 扫码,二维码获取openid unionid orgid问题 搞定
+2. 选择城市 三级联动
+3. 二维码页面布局
+4. 页面分享
 
-机构推广二维码
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf5ca721e672cc146&redirect_uri=https%3a%2f%2fiyueke.net%2fwechat%2fWeixin%2fGetOAuth&response_type=code&scope=snsapi_userinfo&state=ORGQR|1#wechat_redirect
-https://iyueke.net/wechatpage/promoterlogin.html?=o0yxoh1ejDlUALwwx2itAQ6CIINOM&u=oVC3M5kQBkCH6ECjicxnRd4n344Y&orgid=1
-
-推广人二维码
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf5ca721e672cc146&redirect_uri=https%3a%2f%2fiyueke.net%2fwechat%2fWeixin%2fGetOAuth&response_type=code&scope=snsapi_userinfo&state=PROMOTERSQR|1#wechat_redirect
-https://iyueke.net/wechatpage/studentlogin.html?o=o0yxh1ejDlUALwwx2itAQ6CIINOM&u=oVC3M5kQBkCH6ECjicxnRd4n344Y&orgid=1
+file:///D:/Job/iyuekeWechat/WeChat/h5/promoterlogin.html?u=4
+file:///D:/Job/iyuekeWechat/WeChat/h5/studentlogin.html?u=1&saleid=1

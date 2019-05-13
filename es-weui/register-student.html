@@ -7,15 +7,23 @@
         charset="utf-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="./js/register-common.js"></script>
-    <!-- 城市选择器 -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
     <link rel="stylesheet" href="./css/register-student.css">
-    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/LAB.min.js"></script>
+    <script>
+            $LAB.script("./js/crypto-js.js")
+                .script("./js/aes.js")
+                .script("./js/register-common.js")
+                .script("./js/register-student.js")
+                .script("./js/common.js")
+                .wait(function () { initView(); });
+        </script>
+    <!-- 城市选择器 -->
+    <!-- <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css"> -->
+    <!-- <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script> -->
 </head>
 
 <body>
@@ -41,13 +49,13 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
             <div class="weui-cell__bd">
-                <input name="cnname" class="weui-input" type="text" placeholder="请输入宝贝姓名" />
+                <input id="cnname" name="cnname" class="weui-input" type="text" placeholder="请输入宝贝姓名" />
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">英文名</label></div>
             <div class="weui-cell__bd">
-                <input name="enname" class="weui-input" type="text" placeholder="请输入宝贝英文名" />
+                <input id="enname" name="enname" class="weui-input" type="text" placeholder="请输入宝贝英文名" />
             </div>
         </div>
         <div class="weui-cell weui-cell_select weui-cell_select-after">
@@ -55,22 +63,22 @@
                 <label for="" class="weui-label">宝贝性别</label>
             </div>
             <div class="weui-cell__bd">
-                <select class="weui-select" name="sex">
+                <select id="sex" class="weui-select" name="sex">
                     <option value="1">男孩</option>
-                    <option value="2">女孩</option>
+                    <option value="0">女孩</option>
                 </select>
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">宝贝生日</label></div>
             <div class="weui-cell__bd">
-                <input name="birthday" class="weui-input" type="date" value="" />
+                <input id="birthday" name="birthday" class="weui-input" type="date" value="" />
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">所在城市</label></div>
             <div class="weui-cell__bd">
-                <input name="address" class="weui-input" id="chooseCity" type="text" value="请选择地址">
+                <input id="address" name="address" class="weui-input" id="chooseCity" type="text" value="请选择地址">
             </div>
         </div>
         <label for="weuiAgree" class="weui-agree">
@@ -81,7 +89,7 @@
         </label>
 
         <div class="weui-btn-area">
-            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">预约试听</a>
+            <input type="submit" class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" value="预约试听">
         </div>
     </form>
 </body>

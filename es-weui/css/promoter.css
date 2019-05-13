@@ -12,19 +12,49 @@
     display: block;
 }
 
-body{
-    height:100%
+body {
+    height: 100%
 }
 
-#qrcode{
+#qrcode {
     margin-top: 20px
 }
 
-#student-table{
+#student-table {
     table-layout: fixed;
-    text-align:center;
+    text-align: center;
 }
 
 table tr {
     height: 40px
+}
+
+.table_head {
+    background: #24C290;
+    color: white
+}
+
+.odd {
+    background: #D5FFF2;
+}
+
+.even {
+    background: #F0FFFA;
+}
+
+#qrcode_hint{
+    color: #666666;
+    margin-top: 15px;
+    float: left;
+}
+
+#head_img{
+    width: 92px;
+    height: 92px;
+    float: left;
+}
+
+#sex{
+    width: 20px;
+    height: 33px;
 }
