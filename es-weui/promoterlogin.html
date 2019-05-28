@@ -21,12 +21,15 @@
             var openid = $.getUrlParam('o');
             var unionid = $.getUrlParam('u');
             var orgid = $.getUrlParam('orgid');
+            var saleid = $.getUrlParam('saleid');
             console.log("openid = " + openid)
             console.log("unionid = " + unionid)
             console.log("orgid = " + orgid)
+            console.log("saleid = " + saleid)
 
             var obj = {
-                unionid: unionid
+                unionid: unionid,
+                orgid: orgid
             };
             var objJson = JSON.stringify(obj);
             var objJsonEn = aesEncrypt(objJson, aesKey, iv);
@@ -41,13 +44,19 @@
                     if (data.code == 0) {
                         // 需要注册
                         window.location.href = 'register-promoter.html?openid=' + data.data.openid
-                            + "&unionid=" + data.data.unionid + "&orgid=" + orgid;
+                            + "&unionid=" + data.data.unionid + "&orgid=" + orgid + "&saleid=" + saleid;
                     } else if (data.code == 4) {
                         // 已经注册
-                        // sessionStorage.setItem("token", "111111111112");
+                        sessionStorage.setItem("token", data.data.Token);
+                        console.log("save token:" + data.data.Token);
+                        console.log("save org:" + JSON.stringify(data.data.OrgInfoList));
+                        sessionStorage.setItem("org", JSON.stringify(data.data.OrgInfoList));
+                    
+                        // + "&headimg=" + data.data.HeadImg + "&salesmanname=" + data.data.salesmanName 
+                        sessionStorage.setItem("headimg", data.data.HeadImg);
+                        sessionStorage.setItem("salesmanname", data.data.salesmanName);
                         var value = 'promoter.html?u=' + unionid + "&code=" + data.data.ID
-                            + "&headimg=" + data.data.HeadImg + "&orgname=" + data.data.OrgName 
-                            + "&salesmanname=" + data.data.salesmanName + "&gender=" + data.data.Gender;
+                            + "&gender=" + data.data.Gender + "&saleid=" + saleid;
                         window.location.href = value;
                     } else {
                         alert(data.msg);
@@ -62,3 +71,4 @@
 <body>
 
 </body>
+</html>

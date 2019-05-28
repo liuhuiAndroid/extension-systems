@@ -17,6 +17,7 @@ function initView() {
         weui.datePicker({
             start: 1990,
             end: new Date().getFullYear(),
+            defaultValue: [new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate()],
             onConfirm: function (result) {
                 $('#birthday').html(result[0] + "-" + result[1] + "-" + result[2])
             }
@@ -33,31 +34,10 @@ function initView() {
             return false;
         }
         settime();
-        getCode();
+        CheckSendMsg_Student();
+        //getCode();
     });
     console.log("click ... ")
-
-    function getCode() {
-        var obj = {
-            phoneNum: $("#mobile").val(),
-            isVoice: "0"
-        };
-        var objJson = JSON.stringify(obj);
-        var objJsonEn = aesEncrypt(objJson, aesKey, iv);
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify({ param: objJsonEn }),
-            url: "https://api.uniapk.cn/api/PhoneVm/GetCode",
-            contentType: 'application/json',
-            success: function (data) {
-                if (data.code == 0) {
-                    alert("获取验证码成功");
-                } else {
-                    alert(data.message);
-                }
-            },
-        });
-    }
 
     var countdown = 60;
     var _generate_code = $('#generate_code');
@@ -137,8 +117,12 @@ function checkAndCommit() {
         alert("请输入宝贝英文名");
         return false;
     }
-    if (isEmpty(birthday)) {
+    if (birthday == '请选择宝贝生日') {
         alert("请选择宝贝生日");
+        return false;
+    }
+    if (district == '市/县/区') {
+        alert("请选择地区");
         return false;
     }
     if (!$("#weuiAgree").is(":checked")) {
@@ -157,30 +141,68 @@ function checkAndCommit() {
         EnName: enname,
         Gender: sex,
         Birthday: birthday,
-        address: address,
         Province: province,
         City: city,
         Area: district,
         HeadImg: headImg,
-        orgid:orgid
+        orgid: orgid
     };
     var objJson = JSON.stringify(obj);
     var objJsonEn = aesEncrypt(objJson, aesKey, iv);
     console.log("objJsonEn:" + objJsonEn);
     $.ajax({
         type: "POST",
+        async: false,
         data: JSON.stringify({ param: objJsonEn }),
         url: "https://iyueke.net/wechatapi/ActionApi/Popularize_Student/AddStudent",
         contentType: 'application/json',
         success: function (data) {
             if (data.code == 0) {
-                window.location.href = 'register-student-successful.html';
+                // window.location.href = 'register-student-successful.html';
+
+                console.log("注册数据:" + JSON.stringify(data));
+                popularizeSubscribe(data.data)
             } else {
                 alert(data.msg);
             }
         }
     });
     return false;
+}
+
+// 推广订阅
+function popularizeSubscribe(token) {
+    var saleid = $.getUrlParam('saleid');
+    var orgid = $.getUrlParam('orgid');
+    console.log("推广订阅参数 =============== ");
+    console.log("saleid = " + saleid)
+    console.log("orgid = " + orgid)
+    var obj = {
+        orgid: orgid,
+        saleid: saleid
+    };
+    var objJson = JSON.stringify(obj);
+    var objJsonEn = aesEncrypt(objJson, aesKey, iv);
+    console.log("推广订阅 objJsonEn:" + objJsonEn);
+    console.log("推广订阅 token:" + token);
+    $.ajax({
+        headers: {
+            Authorization: token
+        },
+        type: "POST",
+        async: false,
+        data: JSON.stringify({ param: objJsonEn }),
+        url: "https://api.iyueke.net/api/Student/PopularizeSubscribe",
+        contentType: 'application/json',
+        success: function (data) {
+            if (data.code == 0) {
+                console.log("推广订阅：" + data.msg);
+                window.location.href = 'register-student-successful.html';
+            } else {
+                alert(data.msg);
+            }
+        }
+    });
 }
 
 function BindProvince() {
@@ -261,5 +283,52 @@ function BindDistrict(city_id) {
                 $("#district").append("<option value='" + data.data[i].id + "'>" + data.data[i].name + "</option>");
             }
         }
+    });
+}
+
+function CheckSendMsg_Student() {
+    var Flag = false;
+    var tel = $("#mobile").val();
+    var obj = {
+        tel: tel
+    };
+    var objJson = JSON.stringify(obj);
+    $.ajax({
+        url: "https://iyueke.net/wechatapi/ActionApi/Popularize_Student/CheckSendMsg_Student",
+        type: "POST",
+        data: objJson,
+        contentType: "application/json",
+        async: false,
+        success: function (data) {
+            if (data.code == 0) {
+                getCode();
+            } else {
+                alert("该手机号已被使用");
+                return false;
+            }
+        }
+    });
+}
+
+function getCode() {
+    var obj = {
+        phoneNum: $("#mobile").val(),
+        isVoice: "0"
+    };
+    var objJson = JSON.stringify(obj);
+    var objJsonEn = aesEncrypt(objJson, aesKey, iv);
+    console.log("objJsonEn = " + objJsonEn)
+    $.ajax({
+        type: "POST",
+        data: JSON.stringify({ param: objJsonEn }),
+        url: "https://api.iyueke.net/api/PhoneVm/GetCode",
+        contentType: 'application/json',
+        success: function (data) {
+            if (data.code == 0) {
+                // alert("获取验证码成功");
+            } else {
+                alert(data.message);
+            }
+        },
     });
 }

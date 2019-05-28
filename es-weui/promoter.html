@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="css/promoter.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./js/LAB.min.js"></script>
-    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="https://iyueke.net/wechat/WeiXinBase.aspx"></script>
+    <!-- <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="https://iyueke.net/wechat/WeiXinBase.aspx"></script> -->
     <script>
         $LAB.script("./js/crypto-js.js")
             .script("./js/aes.js")
@@ -30,41 +30,92 @@
         <div class="page__bd">
             <div class="weui-tab">
                 <div class="weui-navbar">
-                    <div href="#tab1" class="weui-navbar__item weui-bar__item_on">
-                        二维码
+                    <div id="navbar1" href="#tab1" class="weui-navbar__item weui-bar__item_on">
+                        学生二维码
                     </div>
-                    <div href="#tab2" class="weui-navbar__item">
-                        推广学生列表
+                    <div id="navbar2" href="#tab2" class="weui-navbar__item">
+                        推广人二维码
+                    </div>
+                    <div id="navbar3" href="#tab3" class="weui-navbar__item">
+                        推广人列表
+                    </div>
+                    <div id="navbar4" href="#tab4" class="weui-navbar__item">
+                        推广学生汇总
                     </div>
                 </div>
 
                 <div class="weui-tab__panel">
-                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active" style="margin-top:10%">
+                    <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active" style="margin-top:20%">
                         <div class="div_center">
-                            <div style="margin-bottom:20px;height:100px;">
+                            <div style="margin-bottom:16px;height:46px;">
                                 <img id="head_img">
-                                <div>
-                                    <p style="text-align:left;margin-left:105px;">
-                                        <div id="name"></div>
-                                        <div><img id="sex" style="width:21px;height:35px"></div>
-                                    </p>
-                                </div>
-                                <div>
-                                    <p id="org_name" style="text-align:left;margin-left:105px;"></p>
-                                </div>
+
+                                <p style="text-align:left;margin-left:54px;font-size:15px;font-weight:bold">
+                                    <a id="name"></a>
+                                    <a><img id="sex" style="width:10px;height:16px"></a>
+                                </p>
+
+                                <p id="org_name" style="text-align:left;margin-left:54px;margin-top:3px;font-size:12px;color:#666666"></p>
+
                             </div>
-                            <div id="qrcode" style="text-align:center;margin:auto"></div>
-                            <div id="qrcode_hint">快来扫一扫加入我们吧！</div>
+                        </div>
+                        <div class="div_center">
+                            <div id="qrcode" style="text-align:center;margin:auto;"></div>
+                            <div id="qrcode_hint" style="font-size:12px;color:#666666">成为学生，预约试听</div>
+                        </div>
+                        <button id="btn_switch_org" style="display:none;"
+                            class="weui-btn weui-btn_disabled weui-btn_primary">切换机构</button>
+                    </div>
+
+                    <div id="tab2" class="weui_tab_bd_item" style="margin-top:20%">
+                        <div class="div_center">
+                            <div style="margin-bottom:16px;height:46px;">
+                                <img id="head_img2">
+
+                                <p style="text-align:left;margin-left:54px;font-size:15px;font-weight:bold">
+                                    <a id="name2"></a>
+                                    <a><img id="sex2" style="width:10px;height:16px"></a>
+                                </p>
+
+                                <p id="org_name2" style="text-align:left;margin-left:54px;margin-top:3px;font-size:12px;color:#666666"></p>
+
+                            </div>
+                        </div>
+                        <div class="div_center">
+                            <div id="qrcode_sale" style="text-align:center;margin:auto;"></div>
+                            <div id="qrcode_hint" style="font-size:12px;color:#666666">成为推广人</div>
                         </div>
                     </div>
-                    <div id="tab2" class="weui_tab_bd_item">
+                    <div id="tab3" class="weui_tab_bd_item">
+                        <table id="promoter-table" width="100%" cellspacing="0" cellpadding="2">
+                            <thead>
+                                <tr>
+                                    <th class="table_head">姓名</th>
+                                    <th class="table_head">手机号</th>
+                                    <th class="table_head">推广时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="tab4" class="weui_tab_bd_item">
                         <table id="student-table" width="100%" cellspacing="0" cellpadding="2">
                             <thead>
                                 <tr>
                                     <th class="table_head">姓名</th>
-                                    <th class="table_head">手机</th>
-                                    <th class="table_head">时间</th>
+                                    <th class="table_head">推广人数</th>
+                                    <th class="table_head">操作</th>
                                 </tr>
+                                <!-- <tr>
+                                    <td>姓名</td>
+                                    <td>推广人数</td>
+                                    <td>
+                                        <a class="weui-btn weui-btn_mini weui-btn_primary" href="javascript:void(0)"
+                                            onclick="jumpToDetail()">查看详情</a>
+                                    </td>
+                                </tr> -->
                             </thead>
                             <tbody>
 
@@ -74,6 +125,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="weui-skin_android" id="androidActionsheet" style="display: none">
+            <div class="weui-mask"></div>
+            <div class="weui-actionsheet">
+                <div id="org_menu" class="weui-actionsheet__menu">
+
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
+
+</html>

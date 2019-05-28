@@ -6,9 +6,11 @@ function initView() {
     var openid = $.getUrlParam('openid');
     var unionid = $.getUrlParam('unionid');
     var orgid = $.getUrlParam('orgid');
+    var saleid = $.getUrlParam('saleid');
     console.log("openid = " + openid)
     console.log("unionid = " + unionid)
     console.log("orgid = " + orgid)
+    console.log("saleid = " + saleid)
 
     $('#generate_code').on('click', function () {
         if (isEmpty($("#mobile").val())) {
@@ -33,11 +35,11 @@ function initView() {
         $.ajax({
             type: "POST",
             data: JSON.stringify({ param: objJsonEn }),
-            url: "https://api.uniapk.cn/api/PhoneVm/GetCode",
+            url: "https://api.iyueke.net/api/PhoneVm/GetCode",
             contentType: 'application/json',
             success: function (data) {
                 if (data.code == 0) {
-                    alert("获取验证码成功");
+                    // alert("获取验证码成功");
                 } else {
                     alert(data.message);
                 }
@@ -72,10 +74,12 @@ function checkAndCommit() {
     var openid = $.getUrlParam('openid');
     var unionid = $.getUrlParam('unionid');
     var orgid = $.getUrlParam('orgid');
+    var saleid = $.getUrlParam('saleid');
     console.log("===---------------===")
     console.log("openid = " + openid)
     console.log("unionid = " + unionid)
     console.log("orgid = " + orgid)
+    console.log("saleid = " + saleid)
 
     var tel = $("#mobile").val();
     var code = $("#code").val();
@@ -108,6 +112,7 @@ function checkAndCommit() {
     var obj = {
         openid: openid,
         unionid: unionid,
+        parentsalesmanid: saleid, // 需要找后台确认
         organizationID: orgid,
         name: name,
         code: code,
@@ -129,9 +134,14 @@ function checkAndCommit() {
                 // setTimeout(function () {
                 //     $toast.fadeOut(100);
                 // }, 2000);
+                console.log("save token:" + data.data.Token);
+                sessionStorage.setItem("token", data.data.Token);
+                sessionStorage.setItem("org", JSON.stringify(data.data.OrgInfoList));
+                sessionStorage.setItem("headimg", data.data.HeadImg);
+                sessionStorage.setItem("salesmanname", data.data.salesmanName);
                 window.location.href = 'promoter.html?u=' + unionid + "&code=" + data.data.ID
-                    + "&headimg=" + data.data.HeadImg + "&orgname=" + data.data.OrgName
-                    + "&salesmanname=" + data.data.salesmanName + "&gender=" + data.data.Gender;
+                    + "&gender=" + data.data.Gender + "&saleid=" + saleid;
+                // + "&headimg=" + data.data.HeadImg + "&salesmanname=" + data.data.salesmanName 
             } else {
                 alert(data.msg);
             }

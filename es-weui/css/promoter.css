@@ -25,6 +25,11 @@ body {
     text-align: center;
 }
 
+#promoter-table {
+    table-layout: fixed;
+    text-align: center;
+}
+
 table tr {
     height: 40px
 }
@@ -45,12 +50,17 @@ table tr {
 #qrcode_hint {
     color: #666666;
     margin-top: 15px;
-    /* float: left; */
 }
 
 #head_img {
-    width: 92px;
-    height: 92px;
+    width: 46px;
+    height: 46px;
+    float: left;
+}
+
+#head_img2 {
+    width: 46px;
+    height: 46px;
     float: left;
 }
 
@@ -59,8 +69,17 @@ table tr {
     height: 33px;
 }
 
+#sex2 {
+    width: 20px;
+    height: 33px;
+}
+
 .div_center {
-    width: 260px;
+    width: 192px;
     text-align: center;
     margin: auto;
+}
+
+.weui-navbar__item {
+    font-size: 14px
 }

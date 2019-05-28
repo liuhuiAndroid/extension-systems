@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
+    <link rel="stylesheet" href="./css/promoter-detail.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/LAB.min.js"></script>
+
+    <link rel="stylesheet" href="refresh/minirefresh.min.css" />
+
+    <script>
+        $LAB.script("./js/crypto-js.js")
+            .script("./js/aes.js")
+            .script("./js/promoter-detail.js")
+            .script("./js/common.js")
+            .script("./refresh/minirefresh.min.js")
+            .wait(function () { initView(); });
+    </script>
+</head>
+
+<body>
+    <!-- <div style="width:1000px; height:200px; overflow:scroll;"> -->
+    <div id="minirefresh" class="minirefresh-wrap">
+        <div class="minirefresh-scroll">
+            <table id="student-table" width="100%" cellspacing="0" cellpadding="2">
+                <thead>
+                    <tr>
+                        <th class="table_head">姓名</th>
+                        <th class="table_head">手机</th>
+                        <th class="table_head">注册时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- </div> -->
+
+    <!-- <div id="data_loading" class="weui-loadmore" style="display:none;">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">正在加载</span>
+    </div>
+    <div id="no_data" class="weui-loadmore weui-loadmore_line" style="display:none;">
+        <span class="weui-loadmore__tips">暂无数据</span>
+    </div> -->
+
+</body>
+
+</html>

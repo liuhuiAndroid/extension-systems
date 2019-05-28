@@ -44,7 +44,7 @@
                     if (data.code == 0) {
                         // 需要注册
                         window.location.href = 'register-student.html?openid=' + data.data.openid
-                            + "&unionid=" + data.data.unionid + "&saleid=" + saleid 
+                            + "&unionid=" + data.data.unionid + "&saleid=" + saleid
                             + "&headimg=" + data.data.headimgurl + "&orgid=" + orgid;
                     } else if (data.code == 4) {
                         // 已经注册
@@ -52,6 +52,43 @@
                         // sessionStorage.setItem("token", "111111111112");
                         // window.location.href = 'student.html?u=' + unionid + "&code=" + data.data;
                         alert("您已是爱约课会员");
+                    } else if (data.code == 6) {
+                        popularizeSubscribe(data.data)
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+        }
+
+        // 推广订阅
+        function popularizeSubscribe(token) {
+            var saleid = $.getUrlParam('saleid');
+            var orgid = $.getUrlParam('orgid');
+            console.log("推广订阅参数 =============== ");
+            console.log("saleid = " + saleid)
+            console.log("orgid = " + orgid)
+            var obj = {
+                orgid: orgid,
+                saleid: saleid
+            };
+            var objJson = JSON.stringify(obj);
+            var objJsonEn = aesEncrypt(objJson, aesKey, iv);
+            console.log("推广订阅 objJsonEn:" + objJsonEn);
+            console.log("推广订阅 token:" + token);
+            $.ajax({
+                headers: {
+                    Authorization: token
+                },
+                type: "POST",
+                async: false,
+                data: JSON.stringify({ param: objJsonEn }),
+                url: "https://api.iyueke.net/api/Student/PopularizeSubscribe",
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.code == 0) {
+                        console.log("推广订阅：" + data.msg);
+                        window.location.href = 'register-student-successful.html';
                     } else {
                         alert(data.msg);
                     }
@@ -65,3 +102,5 @@
 <body>
 
 </body>
+
+</html>

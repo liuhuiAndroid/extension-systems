@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-        charset="utf-8">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          charset="utf-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
     <link rel="stylesheet" href="./css/register-student-successful.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/LAB.min.js"></script>
+    <script>
+        $LAB.script("./js/qrcode.min.js")
+            .script("./js/register-student-successful.js")
+            .wait(function () { initView(); });
+    </script>
+    <style>
+        .imgClass {
+            text-align: center;
+            margin: auto;
+        }
+    </style>
 </head>
-
-<body>
-
-    <img id="image" src="./images/iyueke_register_success.jpg" alt="">
-
+<body style="text-align:center">
+    <div id="successicon" style="margin:auto;margin-top:70px;">
+        <img id="image" src="./images/iyueke_success.png" style="width:96px;height:96px">
+        <p style="font-size:18px;color:#000000;font-weight:bold">预约成功</p>
+    </div>
+    <div id="qrcode_hint" style="margin-top:60px;margin-bottom:30px;font-size:12px;color:#666666">扫描下方二维码即可下载爱约课iYueke App</div>
+    <div id="uploadcode">
+        <div style="float:left;margin-left:10%;">
+            <p id="qrcode_andoid"></p>
+            <p style="font-size:12px;color:#000000;font-weight:bold;margin-top:15px">Android下载</p>
+        </div>
+        <div style="float:right;margin-right:10%;" class="qrcode">
+            <p id="qrcode_ios"></p>
+            <p style="font-size:12px;color:#000000;font-weight:bold;margin-top:15px">iOS下载</p>
+        </div>
+    </div>
 </body>
+</html>

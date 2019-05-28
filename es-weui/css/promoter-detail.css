@@ -1,0 +1,21 @@
+#student-table {
+    table-layout: fixed;
+    text-align: center;
+}
+
+table tr {
+    height: 40px
+}
+
+.table_head {
+    background: #24C290;
+    color: white
+}
+
+.odd {
+    background: #D5FFF2;
+}
+
+.even {
+    background: #F0FFFA;
+}
