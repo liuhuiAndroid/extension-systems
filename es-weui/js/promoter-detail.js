@@ -61,7 +61,6 @@ function getListData(code, orgid,type) {
                     var tr;
                     tr = '<td>' + data.data[i].Name + '</td><td>' + data.data[i].Tel + '</td><td>' + data.data[i].CreateDate + '</td>'
                     $("#student-table").append('<tr>' + tr + '</tr>')
-
                 }
             } else {
                 alert(data.msg);
@@ -76,7 +75,9 @@ function getListData(code, orgid,type) {
                     console.log("miniRefresh.endUpLoading(true)")
                     miniRefresh.endUpLoading(true);
                 }else{
-                    miniRefresh.endDownLoading(false);
+                    // miniRefresh.endUpLoading(false);
+                    console.log("miniRefresh.endUpLoading(false)")
+                    miniRefresh.endUpLoading(false);
                 }
             }
             
