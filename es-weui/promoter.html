@@ -8,10 +8,9 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
     <link rel="stylesheet" href="css/promoter.css">
+    <link rel="stylesheet" href="refresh/minirefresh.min.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./js/LAB.min.js"></script>
-    <!-- <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="https://iyueke.net/wechat/WeiXinBase.aspx"></script> -->
     <script>
         $LAB.script("./js/crypto-js.js")
             .script("./js/aes.js")
@@ -20,6 +19,7 @@
             .script("./js/common.js")
             .script("https://res.wx.qq.com/open/js/jweixin-1.0.0.js")
             .script("https://iyueke.net/wechat/WeiXinBase.aspx")
+            .script("./refresh/minirefresh.min.js")
             .wait(function () { initView(); });
     </script>
 </head>
@@ -27,7 +27,7 @@
 <body>
 
     <div class="page">
-        <div class="page__bd">
+        <div class="page__bd" style="height: 100%;">
             <div class="weui-tab">
                 <div class="weui-navbar">
                     <div id="navbar1" href="#tab1" class="weui-navbar__item weui-bar__item_on">
@@ -37,14 +37,17 @@
                         推广人二维码
                     </div>
                     <div id="navbar3" href="#tab3" class="weui-navbar__item">
-                        推广人列表
+                        二级推广人
                     </div>
                     <div id="navbar4" href="#tab4" class="weui-navbar__item">
                         推广学生汇总
                     </div>
+                    <div id="navbar5" href="#tab5" class="weui-navbar__item">
+                        活动
+                    </div>
                 </div>
 
-                <div class="weui-tab__panel">
+                <div class="weui-tab__panel" style="padding-top: 70px">
                     <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active" style="margin-top:20%">
                         <div class="div_center">
                             <div style="margin-bottom:16px;height:46px;">
@@ -55,8 +58,9 @@
                                     <a><img id="sex" style="width:10px;height:16px"></a>
                                 </p>
 
-                                <p id="org_name" style="text-align:left;margin-left:54px;margin-top:3px;font-size:12px;color:#666666"></p>
-
+                                <p id="org_name"
+                                    style="text-align:left;margin-left:54px;margin-top:3px;font-size:12px;color:#666666">
+                                </p>
                             </div>
                         </div>
                         <div class="div_center">
@@ -77,7 +81,9 @@
                                     <a><img id="sex2" style="width:10px;height:16px"></a>
                                 </p>
 
-                                <p id="org_name2" style="text-align:left;margin-left:54px;margin-top:3px;font-size:12px;color:#666666"></p>
+                                <p id="org_name2"
+                                    style="text-align:left;margin-left:54px;margin-top:3px;font-size:12px;color:#666666">
+                                </p>
 
                             </div>
                         </div>
@@ -86,41 +92,49 @@
                             <div id="qrcode_hint" style="font-size:12px;color:#666666">成为推广人</div>
                         </div>
                     </div>
+
                     <div id="tab3" class="weui_tab_bd_item">
-                        <table id="promoter-table" width="100%" cellspacing="0" cellpadding="2">
-                            <thead>
-                                <tr>
-                                    <th class="table_head">姓名</th>
-                                    <th class="table_head">手机号</th>
-                                    <th class="table_head">推广时间</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div id="minirefreshPromoter" class="minirefresh-default" style="height: 100%;">
+                            <div class="minirefresh-scroll">
+                                <table id="promoter-table" width="100%" cellspacing="0" cellpadding="2">
+                                    <thead>
+                                        <tr>
+                                            <th class="table_head">姓名</th>
+                                            <th class="table_head">手机号</th>
+                                            <th class="table_head">推广时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div id="tab4" class="weui_tab_bd_item">
-                        <table id="student-table" width="100%" cellspacing="0" cellpadding="2">
-                            <thead>
-                                <tr>
-                                    <th class="table_head">姓名</th>
-                                    <th class="table_head">推广人数</th>
-                                    <th class="table_head">操作</th>
-                                </tr>
-                                <!-- <tr>
-                                    <td>姓名</td>
-                                    <td>推广人数</td>
-                                    <td>
-                                        <a class="weui-btn weui-btn_mini weui-btn_primary" href="javascript:void(0)"
-                                            onclick="jumpToDetail()">查看详情</a>
-                                    </td>
-                                </tr> -->
-                            </thead>
-                            <tbody>
 
-                            </tbody>
-                        </table>
+                    <div id="tab4" class="weui_tab_bd_item">
+                        <div id="minirefreshStudent" class="minirefresh-default" style="height: 100%;flex: 1;">
+                            <div class="minirefresh-scroll">
+                                <table id="student-table" width="100%" height="100%" cellspacing="0" cellpadding="2">
+                                    <thead>
+                                        <tr>
+                                            <th class="table_head">姓名</th>
+                                            <th class="table_head">推广人数</th>
+                                            <th class="table_head">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab5" class="weui_tab_bd_item">
+                        <ul id="activity_ul" style="font-size:0;text-align:center;margin:8px;">
+                           
+                        </ul>
                     </div>
                 </div>
             </div>

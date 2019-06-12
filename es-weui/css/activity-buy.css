@@ -1,0 +1,36 @@
+.weui-navbar__item {
+    color: #8D8C91;
+    font-weight: bold;
+    font-size: 18px;
+    background: #ffffff;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+    background: #ffffff;
+}
+
+.weui-bar__item_on {
+    color: #EB5953;
+    font-weight: bold;
+    font-size: 18px;
+    background: #ffffff;
+}
+
+.weui-navbar__item:after {
+    color: #ffffff;
+    border-right: 0px solid #ffffff;
+}
+
+.weui_tab_bd_item {
+    display: none;
+    height: 100%;
+    overflow: auto;
+}
+
+.weui_tab_bd_item.weui_tab_bd_item_active {
+    display: block;
+}
+
+.disable {
+	pointer-events: none;
+}

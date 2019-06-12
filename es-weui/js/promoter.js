@@ -4,9 +4,59 @@ var mOrgName;
 var mCurrentItem = 0;
 var mCurrentShareDetail = '成为学生，预约试听';
 
+var minirefreshStudent = null
+var currentPageStudent = 0
+
+var minirefreshPromoter = null
+var currentPagePromoter = 0
+
 function initView() {
+
+    // 引入任何一个主题后，都会有一个 MiniRefresh 全局变量
+    minirefreshStudent = new MiniRefresh({
+        container: '#minirefreshStudent',
+        down: {
+            isAuto: true,
+            callback: function () {
+                console.log('callback down')
+                currentPageStudent = 0
+                getListData(mCode, mOrg, true)
+            }
+        },
+        up: {
+            isAuto: false,
+            callback: function () {
+                console.log('callback up')
+                currentPageStudent++
+                getListData(mCode, mOrg, false)
+            }
+        }
+    });
+
+    // 引入任何一个主题后，都会有一个 MiniRefresh 全局变量
+    minirefreshPromoter = new MiniRefresh({
+        container: '#minirefreshPromoter',
+        down: {
+            isAuto: true,
+            callback: function () {
+                console.log('callback down')
+                currentPagePromoter = 0
+                getLowerLevelListData(mCode, mOrg, true)
+            }
+        },
+        up: {
+            isAuto: false,
+            callback: function () {
+                console.log('callback up')
+                currentPagePromoter++
+                getLowerLevelListData(mCode, mOrg, false)
+            }
+        }
+    });
+
     var headimg = sessionStorage.getItem("headimg")
     var code = $.getUrlParam('code');
+    mCode = code;
     var salesmanname = sessionStorage.getItem("salesmanname")
     var gender = $.getUrlParam('gender');
     var saleid = $.getUrlParam('saleid');
@@ -14,7 +64,6 @@ function initView() {
     console.log("code = " + code)
     console.log("salesmanname = " + salesmanname)
     console.log("saleid = " + saleid)
-    mCode = code;
 
     $('#head_img').attr("src", headimg);
     $('#head_img2').attr("src", headimg);
@@ -50,13 +99,20 @@ function initView() {
             } else if (jQuery(this).attr("href") == "#tab3") {
                 mCurrentItem = 1
                 console.log("mCurrentItem set =  " + mCurrentItem)
-                getLowerLevelListData(mCode, mOrg)
+                currentPagePromoter = 0
+                getLowerLevelListData(mCode, mOrg, true)
                 initWeChat()
             } else if (jQuery(this).attr("href") == "#tab4") {
                 mCurrentItem = 1
                 console.log("mCurrentItem set =  " + mCurrentItem)
-                getListData(mCode, mOrg)
+                currentPageStudent = 0
+                getListData(mCode, mOrg, true)
                 initWeChat()
+            } else if (jQuery(this).attr("href") == "#tab5") {
+                mCurrentItem = 1
+                console.log("mCurrentItem set =  " + mCurrentItem)
+                currentPageStudent = 0
+                getActivityData(mOrg)
             }
         });
     });
@@ -93,9 +149,10 @@ function initView() {
         // 获取推广学生列表信息
         mOrg = orgobj[0].ID
         mOrgName = orgobj[0].Name
-        getListData(code, orgobj[0].ID)
+        currentPageStudent = 0
+        getListData(code, orgobj[0].ID, true)
 
-        $("#btn_switch_org").hide();  
+        $("#btn_switch_org").hide();
         initWeChat()
     } else {
         // 选择机构
@@ -144,7 +201,8 @@ function selectOrg(orgid, name) {
     // 获取推广学生列表信息
     mOrg = orgid
     mOrgName = name
-    getListData(code, orgid)
+    currentPageStudent = 0
+    getListData(code, orgid, true)
     initWeChat()
 }
 
@@ -182,13 +240,14 @@ function initWeChat() {
 }
 
 // 获取二级推广人列表
-function getLowerLevelListData(code, orgid) {
+function getLowerLevelListData(code, orgid, type) {
     var token = sessionStorage.getItem("token")
     console.log("getLowerLevelListData code = " + code + ", orgid = " + orgid)
     var obj = {
         salesmanID: code,
         orgid: orgid,
-        Token: token
+        Token: token,
+        page: currentPagePromoter
     };
     var objJson = JSON.stringify(obj);
     var objJsonEn = aesEncrypt(objJson, aesKey, iv);
@@ -201,7 +260,9 @@ function getLowerLevelListData(code, orgid) {
         contentType: 'application/json',
         success: function (data) {
             if (data.code == 0) {
-                $("#promoter-table tbody").html("");
+                if (type) {
+                    $("#promoter-table tbody").html("");
+                }
 
                 for (i in data.data) {
                     var tr;
@@ -214,19 +275,32 @@ function getLowerLevelListData(code, orgid) {
             } else {
                 alert(data.msg);
             }
+
+            if (type) {
+                minirefreshPromoter.endDownLoading();
+            }
+
+            if (data.data.length != 10) {
+                console.log("miniRefresh.endUpLoading(true)")
+                minirefreshPromoter.endUpLoading(true);
+            } else {
+                console.log("miniRefresh.endUpLoading(false)")
+                minirefreshPromoter.endUpLoading(false);
+            }
         }
     });
 }
 
 // 获取推广学生汇总信息
-function getListData(code, orgid) {
+function getListData(code, orgid, type) {
     var code = $.getUrlParam('code');
     var token = sessionStorage.getItem("token")
     console.log("getListData code = " + code + ", orgid = " + orgid)
     var obj = {
         salesmanID: code,
         orgid: orgid,
-        Token: token
+        Token: token,
+        page: currentPageStudent
     };
     var objJson = JSON.stringify(obj);
     var objJsonEn = aesEncrypt(objJson, aesKey, iv);
@@ -239,7 +313,9 @@ function getListData(code, orgid) {
         contentType: 'application/json',
         success: function (data) {
             if (data.code == 0) {
-                $("#student-table tbody").html("");
+                if (type) {
+                    $("#student-table tbody").html("");
+                }
 
                 for (i in data.data) {
                     console.log("getListData data.data[i].ID = " + data.data[i].ID)
@@ -260,6 +336,52 @@ function getListData(code, orgid) {
             } else {
                 alert(data.msg);
             }
+
+            if (type) {
+                minirefreshStudent.endDownLoading();
+            }
+
+            if (data.data.length != 10) {
+                console.log("miniRefresh.endUpLoading(true)")
+                minirefreshStudent.endUpLoading(true);
+            } else {
+                console.log("miniRefresh.endUpLoading(false)")
+                minirefreshStudent.endUpLoading(false);
+            }
+        }
+    });
+}
+
+// 获取机构活动列表信息
+function getActivityData(orgid) {
+    console.log("getActivityData orgid:" + orgid);
+    var token = sessionStorage.getItem("token")
+    var obj = {
+        orgid: orgid,
+        token: token
+    };
+    var objJson = JSON.stringify(obj);
+    var objJsonEn = aesEncrypt(objJson, aesKey, iv);
+    console.log("objJsonEn:" + objJsonEn);
+
+    $.ajax({
+        type: "POST",
+        data: JSON.stringify({ param: objJsonEn }),
+        url: "https://iyueke.net/wechatapi/ActionApi/Activity/GetActivityList",
+        contentType: 'application/json',
+        success: function (data) {
+            console.log("data:");
+            if (data.code == 0) {
+                console.log("data.code == 0");
+                $("#activity_ul").html("");
+                for (i in data.data) {
+                    var li = '<img src="' + data.data[i].BannerUrl + '" style="width: 98%;margin:5px" onclick="jumpToActivityDetail(' + data.data[i].ID + ',' + "" + ')"/>'
+                    $("#activity_ul").append('<li>' + li + '</li>')
+                }
+                console.log("data end");
+            } else {
+                alert(data.msg);
+            }
         }
     });
 }
@@ -267,4 +389,11 @@ function getListData(code, orgid) {
 // 查看详情
 function jumpToDetail() {
     window.location.href = 'promoter-detail.html?code=' + mCode + '&orgid=' + mOrg
+}
+
+// 查看活动
+function jumpToActivityDetail(activityId, Page) {
+    var unionid = $.getUrlParam('unionid');
+    console.log('unionid = ' + unionid)
+    window.location.href = 'activity-detail.html?id=' + activityId + "&unionid=" + unionid + "&orgid=" + mOrg
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/LAB.min.js"></script>
+    <script>
+
+        $LAB.script("./js/crypto-js.js")
+            .script("./js/aes.js")
+            .script("./js/common.js")
+            .script("./js/activity-detail.js")
+            .script("https://res.wx.qq.com/open/js/jweixin-1.0.0.js")
+            .script("https://iyueke.net/wechat/WeiXinBase.aspx")
+            .wait(function () { initView(); });
+
+    </script>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+    
+    <div id="loadingToast" style="display:none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-loading weui-icon_toast"></i>
+            <p class="weui-toast__content">数据加载中</p>
+        </div>
+    </div>
+</body>
+
+</html>

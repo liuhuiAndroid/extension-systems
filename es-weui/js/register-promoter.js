@@ -84,7 +84,7 @@ function checkAndCommit() {
     var tel = $("#mobile").val();
     var code = $("#code").val();
     var name = $("#name").val();
-    console.log("mobile = " + mobile)
+    console.log("mobile = " + tel)
     console.log("code = " + code)
     console.log("name = " + name)
     console.log("===---------------===")
@@ -140,7 +140,7 @@ function checkAndCommit() {
                 sessionStorage.setItem("headimg", data.data.HeadImg);
                 sessionStorage.setItem("salesmanname", data.data.salesmanName);
                 window.location.href = 'promoter.html?u=' + unionid + "&code=" + data.data.ID
-                    + "&gender=" + data.data.Gender + "&saleid=" + saleid;
+                    + "&gender=" + data.data.Gender + "&saleid=" + saleid + "&unionid=" + unionid;
                 // + "&headimg=" + data.data.HeadImg + "&salesmanname=" + data.data.salesmanName 
             } else {
                 alert(data.msg);

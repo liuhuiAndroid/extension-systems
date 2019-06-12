@@ -19,3 +19,8 @@ table tr {
 .even {
     background: #F0FFFA;
 }
+
+body, html, table, #minirefresh, #minirefresh-scroll {
+    width: 100%;
+    height: 100%
+}

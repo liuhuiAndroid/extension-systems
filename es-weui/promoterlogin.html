@@ -56,7 +56,7 @@
                         sessionStorage.setItem("headimg", data.data.HeadImg);
                         sessionStorage.setItem("salesmanname", data.data.salesmanName);
                         var value = 'promoter.html?u=' + unionid + "&code=" + data.data.ID
-                            + "&gender=" + data.data.Gender + "&saleid=" + saleid;
+                            + "&gender=" + data.data.Gender + "&saleid=" + saleid + "&unionid=" + unionid;
                         window.location.href = value;
                     } else {
                         alert(data.msg);

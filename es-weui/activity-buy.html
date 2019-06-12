@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
+    <link rel="stylesheet" href="./css/activity-buy.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./js/LAB.min.js"></script>
+    <script>
+        $LAB.script("./js/crypto-js.js")
+            .script("./js/aes.js")
+            .script("./js/common.js")
+            .script("./js/activity-buy.js")
+            .script("https://res.wx.qq.com/open/js/jweixin-1.0.0.js")
+            .script("https://iyueke.net/wechat/WeiXinBase.aspx")
+            .wait(function () { initView(); });
+    </script>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <div style="padding-bottom:49px;">
+            <div id="groupPage" class="page__hd" style="display:none;">
+                <div style="height: 80px">
+                    <img style="float:left;margin:16px 20px;width:48px;height:48px"
+                        src="https://api.iyueke.net:443/upload/backend/BodyPart_2b64794e-1107-4a89-86a5-8d05675afb82.png">
+                    <div style="float:left;">
+                        <p style="text-align:left;margin-top:16px;color:#000000;font-size:15px;font-weight:bold">宛佳玉</p>
+                        <p style="text-align:left;color:#000000;font-size:12px;">孩子特喜欢这门课，推荐给你</p>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+                <div align="center">
+                    <div style="background-size:cover;width:90%;height:132px;background:url('./images/activity_buy_bg.png');">
+                        <img style="float:left;width:127px;height:85px;margin:29px 0px 0px 15px;"
+                            src="https://api.iyueke.net/upload/backend/BodyPart_78c2d196-028e-4975-b90e-f38a09c11d77.png">
+                        <div style="float:left;margin:38px 0px 0px 15px;">
+                            <p style="text-align:left;font-size:13px;color:#000000">智滕母语素养主题课</p>
+                            <p style="text-align:left;font-size:13px;color:#999999">¥3989</p>
+                            <p style="text-align:left;font-size:15px;color:#FF4B4B">4人团 ¥29.9</p>
+                        </div>
+                    </div>
+                </div>
+                <div align="center">
+                    <div style="width: 272px">
+                        <img id="imgHeader1" style="float:left;margin:16px 10px;width:48px;height:48px"
+                            src="./images/activity_buy_add.png">
+                        <img id="imgHeader2" style="float:left;margin:16px 10px;width:48px;height:48px"
+                            src="./images/activity_buy_add.png">
+                        <img id="imgHeader3" style="float:left;margin:16px 10px;width:48px;height:48px"
+                            src="./images/activity_buy_add.png">
+                        <img id="imgHeader4" style="float:left;margin:16px 10px;width:48px;height:48px"
+                            src="./images/activity_buy_add.png">
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+                <div>
+                    <p id="desc" style="margin:0px 0px 16px 0px;text-align:center;color:#ED7523;font-size:14px;font-weight:bold">
+                        该团已拼课成功！自己开团试试吧！</p>
+                </div>
+            </div>
+
+            <div class="page__bd page__bd_spacing">
+                <img id="image" style="width: 100%"
+                    src="https://api.iyueke.net/upload/backend/BodyPart_78c2d196-028e-4975-b90e-f38a09c11d77.png">
+                <div style="font-size: 17px;color:#000000;font-weight: bold;margin: 12px 21px">智滕母语素养主题课</div>
+                <div style="font-size: 17px;color:#EB5953;font-weight: bold;margin: 0px 0px 12px 21px">￥29.9</div>
+                <div class="page">
+                    <div class="page__bd" style="height: 100%;">
+                        <div class="weui-tab">
+                            <div class="weui-navbar" style="z-index:0;">
+                                <div class="weui-navbar__item weui-bar__item_on" href="#tab1">
+                                    课程介绍
+                                </div>
+                                <div class="weui-navbar__item" href="#tab2">
+                                    课程大纲
+                                </div>
+                            </div>
+                            <div class="weui-tab__panel">
+                                <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active">
+                                    <img style="width: 100%"
+                                        src="https://api.iyueke.net/upload/backend/BodyPart_6d3171b3-8f40-4e79-aa80-663c5523d5fc.jpg">
+                                </div>
+                                <div id="tab2" class="weui_tab_bd_item">
+                                    <img style="width: 100%"
+                                        src="https://api.iyueke.net/upload/backend/BodyPart_08a3117a-469e-4c59-8b4b-07c72501868f.jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page__ft" style="position:fixed;left:0px;bottom:0px;width:100%;height:49px;">
+            <div class="weui-flex">
+                <div class="weui-flex__item" onClick="singlePurchase()">
+                    <div class="placeholder"
+                        style="line-height:49px;height:49px;background:#FBE9E3;text-align:center;color:#EB5953">
+                        <div id="singlePrice" style="line-height:1.6;font-weight: bold;">￥</div>
+                        <div style="line-height:1.2">单独全价购</div>
+                    </div>
+                </div>
+                <div id="groupBuyContainer" class="weui-flex__item" onClick="groupBuying()">
+                    <div id="groupBuyDiv" class="placeholder"
+                        style="line-height:49px;height:49px;background:#ff0000;text-align:center;color:#ffffff">
+                        <div id="groupPrice" style="line-height:1.6;font-weight: bold;">￥</div>
+                        <div id="groupBuy" style="line-height:1.2">一键开团（4人团）</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--BEGIN actionSheet-->
+        <div style="z-index:9999;">
+            <div class="weui-mask" id="loginMask" style="display: none"></div>
+            <div class="weui-actionsheet" id="loginActionsheet">
+                <div class="weui-actionsheet__title">
+                    <p class="weui-actionsheet__title-text">手机号登录</p>
+                </div>
+                <div class="weui-actionsheet__menu">
+                    <form method="post" onsubmit="return checkAndCommit()" action="api/register">
+                        <div class="weui-cell weui-cell_vcode">
+                            <div class="weui-cell__hd">
+                                <label class="weui-label">手机号</label>
+                            </div>
+                            <div class="weui-cell__bd">
+                                <input id="mobile" name="mobile" class="weui-input" type="tel" placeholder="请输入手机号" />
+                            </div>
+                            <div class="weui-cell__ft">
+                                <button id="generate_code" class="weui-vcode-btn">获取验证码</button>
+                            </div>
+                        </div>
+                        <div class="weui-cell">
+                            <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+                            <div class="weui-cell__bd">
+                                <input id="code" name="code" class="weui-input" type="text" placeholder="请输入验证码" />
+                            </div>
+                        </div>
+                        <label for="weuiAgree" class="weui-agree">
+                            <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" />
+                            <span class="weui-agree__text">
+                                阅读并同意<a href="https://api.iyueke.net/webpage/terms.html">《爱约课用户服务协议》</a>
+                            </span>
+                        </label>
+
+                        <div class="weui-btn-area">
+                            <input type="submit" class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips"
+                                value="登录" />
+                        </div>
+
+                        <div id="toast" style="display: none;">
+                            <div class="weui-mask_transparent"></div>
+                            <div class="weui-toast">
+                                <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+                                <p class="weui-toast__content">登录成功</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--BEGIN actionSheet-->
+        <div style="z-index:9999;">
+            <div class="weui-mask" id="buyMask" style="display: none"></div>
+            <div class="weui-actionsheet" id="buyActionsheet">
+                <div class="weui-actionsheet__title">
+                    <p class="weui-actionsheet__title-text">付款详情</p>
+                </div>
+                <div class="weui-actionsheet__menu">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">支付总额</div>
+                        <div class="weui-cell__ft">
+                            <span id="dialogPrice" style="vertical-align:middle; font-size: 17px; color: #000">￥29.9</span>
+                        </div>
+                    </div>
+                    <div class="weui-cells__title">支付方式</div>
+                    <div class="weui-cells weui-cells_checkbox">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">微信支付</div>
+                            <div class="weui-cell__ft">
+                                <input type="checkbox" class="weui-check" name="checkbox1" id="s11" checked="checked" />
+                                <i class="weui-icon-checked"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="weui-btn-area">
+                        <input type="button" readonly="readonly" class="weui-btn weui-btn_primary" id="showTooltips"
+                            onClick="pay()" value="确认支付" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
